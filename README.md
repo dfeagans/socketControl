@@ -1,13 +1,23 @@
 socketControl
 =============
 
-Beginning with the socket.io example in [Node.js Succintly by Agus Kurniawan](https://www.syncfusion.com/resources/techportal/ebooks/nodejs), this is an experiment into controlling hardware and reporting physical sensors from a website. End goal would be a mobile-formatted website that allowed viewing a physical system's status and controlling its state.
+This is an experiment into controlling hardware from and reporting physical sensor readings to a website. End goal would be a mobile-formatted website that allowed viewing a physical system's status and controlling its state.
+
++ [Node.js Succintly by Agus Kurniawan](https://www.syncfusion.com/resources/techportal/ebooks/nodejs) was useful for the initial "hello world" implementation.
++ [Daniel Nill's socket.io tutorial](http://danielnill.com/nodejs-tutorial-with-socketio/) was very useful for the basic socket.io logic.
++ [socket.io chat tutorial](http://socket.io/get-started/chat/) provided useful npm commands and express to handle the routings and serving files.
 
 ## Current Plan ##
 
-+ [ ] Set-up basic socket.io connection between a client and server.
-+ [ ] Connect to a computer in situ using a local Node program that communicates to the serveer, and thus the client.
++ [X] Set-up basic socket.io connection between a client and server. A "hello world", if you will. Result: Basic example for Node.js Succintly employed.
++ [ ] Test the latecy of the socket.io by measuring round-trip message time, This would be performed by sending timestamps starting on connection to the client and returning them immedietely to the server. That event would trigger a new timestap (which would enable calculating a time delta) and triggering another send of the new time stamp to the client. This could be done for a reasonable amount of time to calculate latency statistics.
++ [ ] Connect to a computer in situ using a local Node program that communicates to the server, and thus the client.
 + [ ] Connect directly to the computer's USB/serial port to expose the website to the physical system.
 + [ ] Display sensor data from the microcontroller and allow control from the website.
 + [ ] Make the system work with an XBEE wireless-USB radio.
 + [ ] Make things look good... maybe.
+
+## Installation Steps ##
+
++ Install socket.io module using npm install socket.io. Obviously, it's not install globally since it's a dependency of the project.
++ On the server, the socket.io is loaded using a simple `require('socket.io)`. On the client side, you just need `<script src="/socket.io/socket.io.js"></script>`.

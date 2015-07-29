@@ -1,0 +1,21 @@
+{
+  "name": "socketControl",
+  "version": "0.0.1",
+  "description": "Evolving Experiment with Socket.io for controlling hardware from and reporting sensor readings to a website.",
+  "main": "socketio1.js",
+  "dependencies": {
+    "socket.io": "^1.3.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dfeagans/socketControl.git"
+  },
+  "keywords": [
+    "socket.io"
+  ],
+  "author": "dfeagans"
+}
