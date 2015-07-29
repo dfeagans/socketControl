@@ -6,9 +6,9 @@
     <script>
       var socket = io.connect();
       socket.on('news', function (data) {
-         console.log(data);
-         document.getElementById('newsContent').innerHTML = data.content;
-         socket.emit('feedback', 'from client - ' + new Date())
+         //console.log(data);
+         //document.getElementById('newsContent').innerHTML = data.content;
+         socket.emit('feedback', data)
       });
     </script>
 
