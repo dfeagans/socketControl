@@ -1,0 +1,5 @@
+# Ignore this dev file specific to this project
+socketLatency.dat
+
+# Ignore the node_modules. I've kepy the dependencies updated in the package.json, so install them using npm install, not pulling them down github. That methods a waste of space.
+node_modules

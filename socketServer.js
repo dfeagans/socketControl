@@ -1,6 +1,7 @@
-//First line creates the webserver and tells it how to handle requests (see handler functin below).
 var TESTTIME = 5000;
+//The belo line creates the webserver and tells it how to handle requests (see handler functin below).
 var app = require('http').createServer(handler);
+//The below line actually loads the socket.io library and tells it to listen to any pages loaded by the server that have WebSockets in them.
 var io = require('socket.io').listen(app);
 var fs = require('fs');
 
