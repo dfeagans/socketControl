@@ -14,7 +14,7 @@ This is an experiment into controlling hardware from and reporting physical sens
 + [Connect 4 Example](http://code.tutsplus.com/tutorials/connect-4-with-socketio--cms-19869)
 + [Another Presentation Controller](http://tutorialzine.com/2015/02/smartphone-remote-control-for-presentations/)
 
-## Project Steps ##
+## Project Milestones ##
 + [X] *Step 1: Set-up basic socket.io connection between a client and server.* A "hello world", if you will. Result: Basic example for Node.js Succintly employed.
 
 + [X] *Step 2: Prove reasonable socket.io latency: Test the latecy of the socket.io by measuring round-trip message time.* This would be performed by sending timestamps starting on connection to the client and returning them immedietely to the server. That event would trigger a new timestamp (which would enable calculating a time delta) and triggering another send of the new time stamp to the client. This could be done for a reasonable amount of time to calculate latency statistics. Result: I was sending incredibly tiny time stamps, but it equated to 0.02 round trip, which equals about 50Hz AT BEST on my network at home.
@@ -46,6 +46,7 @@ This is an experiment into controlling hardware from and reporting physical sens
 ## General Socket.io Notes ##
 
 *Broadcasting*
+
 In order to send an event to everyony, use ```io.emit```:
 ```
 io.emit('some event', {thisIs : 'sentToEveryone});
