@@ -1,0 +1,15 @@
+{
+  "name": "Step4_ClientServerClient",
+  "version": "1.0.0",
+  "description": "Development Client-Server-Client Socket.io Example - Eventual USB Control",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "dfeagans",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3",
+    "socket.io": "^1.3.6"
+  }
+}
