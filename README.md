@@ -55,10 +55,10 @@ io.emit('some event', {thisIs : 'sentToEveryone});
 If you want to send a message to everyone except for the "broadcasting" client socket. Note it's using the connection event to provide and identify it the socket:
 
 ```Javascript
-sockets.on('connection'), function(client){
+io.on('connection'), function(client){
     //client.emit('ThisIsSentJusttoThisOneClient');
 	client.broadcast.emit('ThisIsSentToEveryoneButThisSpecificSocket');
-    //sockets.emit('ThisGetsSentToEveryone');                 //This socket object is the highest level socket.io object, hence it's emitting to all connected client sockets
+    //io.sockets.emit('ThisGetsSentToEveryone');                 //This socket object is the highest level socket.io object, hence it's emitting to all connected client sockets
 });
 ```
 
