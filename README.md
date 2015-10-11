@@ -27,33 +27,39 @@ This is an experiment into controlling hardware from and reporting physical sens
 + [ ] **Step 5: Introducing USB:** Using the chrome addon, directly connect to the computer's USB/serial port to expose the website to the physical system. [Chrome USB API Reference](https://developer.chrome.com/apps/app_usb). The test interface will be a XBEE radio attached to a 2x16 character screen with a serial backpack. This is a simple package I have from another project that will just display whatever's pumped out of the USB port.
   + [ ] Make the system work with an XBEE wireless-USB radio.
   + [ ] Blink an LED on a microcontroller through the USB.
-+ [ ] **Step 6: Polish It Up** Make things look good and package it up so it's easier to utilize later... maybe.
++ [ ] **Step 6: Polish It Up** Make things look good and package it up so it's easier to utilize later. This would mean doing things like using modernizr similar to the [controldeck example](https://github.com/dfcb/controldeck.js/archive/master.zip) for handling touch versus mouse.
 
 ## Next Steps ##
 
 + Reread the [X] chat demo app documentation,  [X] controldeck.js, [X] multiplayer game, [Skimmed Through] Connect 4 example, and [X] simple presentation controller examples to get back up to working speed. If appropriate, annotate the code for later reference.
-+ Continue on with setting up the Client-Server-Client step of the project. Set-it up using Express as in the socket.io chat example and the seperated logic in the Anagrammatix example.
++ Continue on with setting up the Client-Server-Client step of the project. Set-it up using Express as in the socket.io chat example and the seperated logic in the Anagrammatix example. Do the buttons as simply as possible. Don't use any frameworks or get absorbed in making it look cool yet. Simple buttons instead and just work out the room logic. Make it so that each socket.io room only allows one connection (the first).
 
 ## Installation Steps for Future Reference ##
 
 + On a new project, install socket.io module using `npm install socket.io`. Obviously, it's not installed globally since it's a dependency of the project. Ideally you'd use `npm install scoket.io --save` to populate the dependencies list in the new project's package.json though. If you are starting from this project by git cloning it, just run `npm install` to get the socket.io lib. That installs all the dependencies outline in package.json that's included in the repo.
 + On the server, the socket.io is loaded using a simple `require('socket.io)`. On the client-side in the browser, you just need `<script src="/socket.io/socket.io.js"></script>`. To make a client-side program on the server, use `var socket = require('socket.io/node_modules/socket.io-client')('URL:PORT');` The previous line finds the socket.io-client lib that's installed under the socket.io lib. It's possible to install the socket.io.-client lib as a first class lib using `npm install socket.-io-client` but I haven't tested that. Then you'd just have to `var socket = require('socket.io-client');`.
 
-## General Socket.io Notes ##
+## Socket.io Notes ##
 
-### Broadcasting ###
+### General Concept (and Rooms) ###
 
-In order to send an event to everyony, use ```io.emit```:
-```
+Socket.io is relatively simple. The CLIENT functionality is just emitting data ```socket.emit('eventName', DATA)``` and handling events ```socket.on('eventName', handlerFunction)```. Meanwhile, when the server does a basic emit, it emites to all connected client sockets. The server has additional Room functionality, using ```socket.join(ROONAME)```, where socket is the specific client socket you want to add to that room. Then the server can emit to just that room using ```socket.in(ROOMNAME).emit('eventname')```
+
+### Broadcasting (from Server) ###
+
+In order to send an event to everyon, on the server use ```io.emit```:
+```Javascript
 io.emit('some event', {thisIs : 'sentToEveryone});
 ```
 
-If you want to send a message to everyone except for the "broadcasting" socket. Note it's using the connection event to provide the socket and identify it:
+If you want to send a message to everyone except for the "broadcasting" client socket. Note it's using the connection event to provide and identify it the socket:
 
 ```Javascript
-io.on('connection'), function(socket){
-	socket.broadcast.emit('ThisIsSentToEveryoneElse');
-})
+sockets.on('connection'), function(client){
+    //client.emit('ThisIsSentJusttoThisOneClient');
+	client.broadcast.emit('ThisIsSentToEveryoneButThisSpecificSocket');
+    //sockets.emit('ThisGetsSentToEveryone');                 //This socket object is the highest level socket.io object, hence it's emitting to all connected client sockets
+});
 ```
 
 ### Debugging with Chrome Dev. Tools ###
